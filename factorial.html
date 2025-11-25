@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Факториал выражения</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Вычисление факториала выражения</h1>
+    <img src="background.jpg" alt="Фон" width="300">
+    <p>Введите числовое выражение (например: 3+2, 10-4, 2*3):</p>
+    <input type="text" id="expr" placeholder="Введите выражение">
+    <button onclick="calcFactorial()">Вычислить</button>
+    <p id="result"></p>
+    <nav>
+        <a href="index.html">Главная</a> |
+        <a href="pascal.html">Треугольник Паскаля</a> |
+        <a href="binomial.html">Биномиальный коэффициент</a>
+    </nav>
+    <script>
+        function calcFactorial() {
+            let expr = document.getElementById("expr").value;
+            let num;
+            try {
+                // вычисляем выражение
+                num = eval(expr);
+            } catch (e) {
+                document.getElementById("result").textContent = "Ошибка: некорректное выражение!";
+                return;
+            }
+
+            if (isNaN(num) || num < 0 || !Number.isInteger(num)) {
+                document.getElementById("result").textContent = "Введите корректное целое неотрицательное выражение!";
+                return;
+            }
+
+            let result = 1;
+            for (let i = 2; i <= num; i++) result *= i;
+            document.getElementById("result").textContent = `${expr}! = ${result}`;
+        }
+    </script>
+</body>
+</html>
